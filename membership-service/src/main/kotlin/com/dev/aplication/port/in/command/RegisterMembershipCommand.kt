@@ -1,4 +1,4 @@
-package com.dev.aplication.port.`in`
+package com.dev.aplication.port.`in`.command
 
 import com.dev.common.SelfValidating
 import org.jetbrains.annotations.NotNull

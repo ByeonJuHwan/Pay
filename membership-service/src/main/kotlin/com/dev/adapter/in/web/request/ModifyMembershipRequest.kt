@@ -1,4 +1,4 @@
-package com.dev.adapter.`in`.web
+package com.dev.adapter.`in`.web.request
 
 data class ModifyMembershipRequest(
     val membershipId : String,

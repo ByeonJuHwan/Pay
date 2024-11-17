@@ -1,4 +1,4 @@
-package com.dev.comon
+package com.dev.common
 
 import jakarta.validation.*
 

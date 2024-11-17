@@ -1,30 +1,23 @@
 package com.dev.aplication.service
 
 import com.dev.adapter.out.persistence.toDomain
-import com.dev.aplication.port.`in`.RegisterMembershipCommand
-import com.dev.aplication.port.`in`.RegisterMembershipUseCase
-import com.dev.aplication.port.out.RegisterMembershipPort
+import com.dev.aplication.port.`in`.command.FindMembershipCommand
+import com.dev.aplication.port.`in`.FindMembershipUseCase
+import com.dev.aplication.port.out.FindMembershipPort
 import com.dev.domain.Membership
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
 @Transactional
-class RegisterMembershipService (
-    private val registerMembershipPort: RegisterMembershipPort,
-) : RegisterMembershipUseCase {
+class FindMembershipService (
+    private val findMembershipPort: FindMembershipPort,
+) : FindMembershipUseCase {
 
 
-    override fun registerMembership(command: RegisterMembershipCommand) : Membership {
-
-        val membership = registerMembershipPort.createMembership(
-            Membership.MembershipName(command.name),
-            Membership.MembershipEmail(command.email),
-            Membership.MembershipAddress(command.address),
-            Membership.MembershipIsValid(command.isValid),
-            Membership.MembershipIsCorp(command.isCorp)
+    override fun findMembership(command: FindMembershipCommand): Membership {
+        return findMembershipPort.findById(
+            Membership.MembershipId(command.membershipId)
         ).toDomain()
-
-        return membership
     }
 }

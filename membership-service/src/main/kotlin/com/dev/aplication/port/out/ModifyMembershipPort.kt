@@ -3,8 +3,9 @@ package com.dev.aplication.port.out
 import com.dev.adapter.out.persistence.MembershipJpaEntity
 import com.dev.domain.Membership
 
-interface RegisterMembershipPort {
-    fun createMembership (
+interface ModifyMembershipPort {
+    fun modifyMembership (
+        membershipId: Membership.MembershipId,
         membershipName: Membership.MembershipName,
         membershipEmail: Membership.MembershipEmail,
         membershipAddress: Membership.MembershipAddress,
