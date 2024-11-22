@@ -12,7 +12,7 @@ class FindMembershipController (
     private val findMembershipUseCase: FindMembershipUseCase
 ) {
 
-    @GetMapping("/membership/{membershipId}")
+    @GetMapping("/memberships/{membershipId}")
     fun findMembershipByMemberId(
         @PathVariable membershipId: String,
     ) : Membership {

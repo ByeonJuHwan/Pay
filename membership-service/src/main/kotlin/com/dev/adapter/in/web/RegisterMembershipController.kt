@@ -15,7 +15,7 @@ class RegisterMembershipController (
     private val registerMembershipUseCase: RegisterMembershipUseCase,
 ) {
 
-    @PostMapping("/membership/register")
+    @PostMapping("/memberships")
     fun registerMembership(
         @RequestBody request: RegisterMembershipRequest,
     ) : Membership {

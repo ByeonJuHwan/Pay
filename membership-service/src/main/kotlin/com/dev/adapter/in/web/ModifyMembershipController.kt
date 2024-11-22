@@ -15,7 +15,7 @@ class ModifyMembershipController (
     private val modifyMembershipUseCase: ModifyMembershipUseCase
 ) {
 
-    @PostMapping("/membership/modify/{membershipId}")
+    @PostMapping("/memberships/{membershipId}")
     fun modifyMembershipByMemberId(
         @PathVariable membershipId: String,
         @RequestBody request: ModifyMembershipRequest
