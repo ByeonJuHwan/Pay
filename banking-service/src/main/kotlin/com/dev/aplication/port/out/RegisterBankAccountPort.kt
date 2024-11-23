@@ -5,7 +5,7 @@ import com.dev.domain.RegisteredBankAccount
 
 
 interface RegisterBankAccountPort {
-    fun createBankAccount (
+    fun createRegisteredBankAccount (
         membershipId: RegisteredBankAccount.MembershipId,
         bankName: RegisteredBankAccount.BankName,
         bankAccountNumber: RegisteredBankAccount.BankAccountNumber,

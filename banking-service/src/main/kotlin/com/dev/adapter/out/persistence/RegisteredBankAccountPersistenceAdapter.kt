@@ -9,7 +9,7 @@ import com.dev.domain.RegisteredBankAccount
 class RegisteredBankAccountPersistenceAdapter(
     private val bankAccountRepository: SpringDataRegisteredBankAccountRepository,
 ) : RegisterBankAccountPort, FindRegisterBankAccountPort {
-    override fun createBankAccount(
+    override fun createRegisteredBankAccount(
         membershipId: RegisteredBankAccount.MembershipId,
         bankName: RegisteredBankAccount.BankName,
         bankAccountNumber: RegisteredBankAccount.BankAccountNumber,
