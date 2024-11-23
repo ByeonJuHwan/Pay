@@ -32,6 +32,21 @@ services:
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
+  bank-service:
+      image: pay-banking-service:1.0.1
+      networks:
+        - pay_network
+      ports:
+        - "8082:8080"
+      depends_on:
+        - mariadb
+      environment:
+        - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/pay?useSSL=false&allowPublicKeyRetrieval=true
+        - SPRING_DATASOURCE_USERNAME=${MARIADB_USER}
+        - SPRING_DATASOURCE_PASSWORD=${MARIADB_PASSWORD}
+        - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
+        - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
 networks:
   pay_network:
     driver: bridge

@@ -5,3 +5,4 @@ rootProject.name = "Pay"
 include("membership-service")
 include("common")
 include("room-service")
+include("banking-service")
