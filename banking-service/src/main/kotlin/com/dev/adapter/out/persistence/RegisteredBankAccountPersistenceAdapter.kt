@@ -1,5 +1,6 @@
 package com.dev.adapter.out.persistence
 
+import com.dev.aplication.port.out.FindRegisterBankAccountPort
 import com.dev.aplication.port.out.RegisterBankAccountPort
 import com.dev.common.PersistenceAdapter
 import com.dev.domain.RegisteredBankAccount
@@ -7,7 +8,7 @@ import com.dev.domain.RegisteredBankAccount
 @PersistenceAdapter
 class RegisteredBankAccountPersistenceAdapter(
     private val bankAccountRepository: SpringDataRegisteredBankAccountRepository,
-) : RegisterBankAccountPort {
+) : RegisterBankAccountPort, FindRegisterBankAccountPort {
     override fun createBankAccount(
         membershipId: RegisteredBankAccount.MembershipId,
         bankName: RegisteredBankAccount.BankName,
@@ -22,5 +23,9 @@ class RegisteredBankAccountPersistenceAdapter(
                 linkedStatusIsValid = linkedStatusIsValid.linkedStatusIsValid,
             )
         )
+    }
+
+    override fun findById(bankAccountId: RegisteredBankAccount.RegisteredBankAccountId): RegisteredBankAccountJpaEntity {
+        return bankAccountRepository.findById(bankAccountId.registeredBankAccountId.toLong()).orElseThrow()
     }
 }
