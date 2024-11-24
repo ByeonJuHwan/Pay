@@ -1,8 +1,8 @@
 package com.dev.adapter.out.persistence
 
-import com.dev.aplication.port.out.FindMembershipPort
-import com.dev.aplication.port.out.ModifyMembershipPort
-import com.dev.aplication.port.out.RegisterMembershipPort
+import com.dev.application.port.out.FindMembershipPort
+import com.dev.application.port.out.ModifyMembershipPort
+import com.dev.application.port.out.RegisterMembershipPort
 import com.dev.common.PersistenceAdapter
 import com.dev.domain.Membership
 

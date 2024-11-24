@@ -1,7 +1,7 @@
 package com.dev.adapter.out.persistence
 
 import com.dev.adapter.out.persistence.entity.FirmbankingJpaEntity
-import com.dev.aplication.port.out.RequestFirmbankingPort
+import com.dev.application.port.out.RequestFirmbankingPort
 import com.dev.common.PersistenceAdapter
 import com.dev.domain.FirmBankingRequest
 

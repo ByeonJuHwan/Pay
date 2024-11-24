@@ -1,7 +1,7 @@
 package com.dev.adapter.`in`.web
 
-import com.dev.aplication.port.`in`.command.FindMembershipCommand
-import com.dev.aplication.port.`in`.FindMembershipUseCase
+import com.dev.application.port.`in`.command.FindMembershipCommand
+import com.dev.application.port.`in`.FindMembershipUseCase
 import com.dev.domain.Membership
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

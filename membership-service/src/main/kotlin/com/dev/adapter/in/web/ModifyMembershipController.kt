@@ -1,8 +1,8 @@
 package com.dev.adapter.`in`.web
 
 import com.dev.adapter.`in`.web.request.ModifyMembershipRequest
-import com.dev.aplication.port.`in`.command.ModifyMembershipCommand
-import com.dev.aplication.port.`in`.ModifyMembershipUseCase
+import com.dev.application.port.`in`.command.ModifyMembershipCommand
+import com.dev.application.port.`in`.ModifyMembershipUseCase
 import com.dev.domain.Membership
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable

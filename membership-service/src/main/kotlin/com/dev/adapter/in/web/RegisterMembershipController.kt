@@ -1,8 +1,8 @@
 package com.dev.adapter.`in`.web
 
 import com.dev.adapter.`in`.web.request.RegisterMembershipRequest
-import com.dev.aplication.port.`in`.command.RegisterMembershipCommand
-import com.dev.aplication.port.`in`.RegisterMembershipUseCase
+import com.dev.application.port.`in`.command.RegisterMembershipCommand
+import com.dev.application.port.`in`.RegisterMembershipUseCase
 import com.dev.common.WebAdapter
 import com.dev.domain.Membership
 import org.springframework.web.bind.annotation.PostMapping

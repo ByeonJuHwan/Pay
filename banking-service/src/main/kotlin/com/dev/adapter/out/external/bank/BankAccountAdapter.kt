@@ -1,7 +1,7 @@
 package com.dev.adapter.out.external.bank
 
-import com.dev.aplication.port.out.RequestBankAccountInfoPort
-import com.dev.aplication.port.out.RequestExternalFirmbankingPort
+import com.dev.application.port.out.RequestBankAccountInfoPort
+import com.dev.application.port.out.RequestExternalFirmbankingPort
 import com.dev.common.ExternalSystemAdapter
 
 @ExternalSystemAdapter

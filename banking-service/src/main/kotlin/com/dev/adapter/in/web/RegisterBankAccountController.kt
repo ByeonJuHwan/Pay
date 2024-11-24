@@ -1,8 +1,8 @@
 package com.dev.adapter.`in`.web
 
 import com.dev.adapter.`in`.web.request.RegisterBankAccountRequest
-import com.dev.aplication.port.`in`.command.RegisterBankAccountCommand
-import com.dev.aplication.port.`in`.RegisterBankAccountUseCase
+import com.dev.application.port.`in`.command.RegisterBankAccountCommand
+import com.dev.application.port.`in`.RegisterBankAccountUseCase
 import com.dev.common.WebAdapter
 import com.dev.domain.RegisteredBankAccount
 import org.springframework.web.bind.annotation.PostMapping
