@@ -1,7 +1,7 @@
 package com.dev.aplication.service
 
 import com.dev.adapter.out.external.bank.GetBankAccountRequest
-import com.dev.adapter.out.persistence.toDomain
+import com.dev.adapter.out.persistence.entity.toDomain
 import com.dev.aplication.port.`in`.command.RegisterBankAccountCommand
 import com.dev.aplication.port.`in`.RegisterBankAccountUseCase
 import com.dev.aplication.port.out.RegisterBankAccountPort
@@ -34,16 +34,17 @@ class RegisterBankAccountService (
 
         // 2. 등록가능한 계좌라면, 등록한다. 성공하면, 등록에 성공한 등록 정보를 리턴
         // 2-1. 등록하지 않은 계좌라면. 에러를 리턴
-        if (accountIsValid) {
-            return registerBankAccountPort.createRegisteredBankAccount(
-                RegisteredBankAccount.MembershipId(command.membershipId),
-                RegisteredBankAccount.BankName(command.bankName),
-                RegisteredBankAccount.BankAccountNumber(command.bankAccountNumber),
-                RegisteredBankAccount.LinkedStatusIsValid(command.isValid),
-            ).toDomain()
-        } else {
-            throw RuntimeException("Bank account not valid")
-        }
+        validateBankAccount(accountIsValid)
 
+        return registerBankAccountPort.createRegisteredBankAccount(
+            RegisteredBankAccount.MembershipId(command.membershipId),
+            RegisteredBankAccount.BankName(command.bankName),
+            RegisteredBankAccount.BankAccountNumber(command.bankAccountNumber),
+            RegisteredBankAccount.LinkedStatusIsValid(command.isValid),
+        ).toDomain()
+    }
+
+    private fun validateBankAccount(accountIsValid: Boolean) {
+        require(accountIsValid) {throw RuntimeException("올바른 은행계좌가 아닙니다")}
     }
 }

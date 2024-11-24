@@ -1,5 +1,6 @@
 package com.dev.adapter.out.persistence
 
+import com.dev.adapter.out.persistence.entity.RegisteredBankAccountJpaEntity
 import com.dev.aplication.port.out.FindRegisterBankAccountPort
 import com.dev.aplication.port.out.RegisterBankAccountPort
 import com.dev.common.PersistenceAdapter

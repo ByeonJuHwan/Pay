@@ -1,4 +1,4 @@
-package com.dev.adapter.out.persistence
+package com.dev.adapter.out.persistence.entity
 
 import com.dev.domain.RegisteredBankAccount
 import jakarta.persistence.*

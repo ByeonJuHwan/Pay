@@ -1,6 +1,6 @@
 package com.dev.aplication.service
 
-import com.dev.adapter.out.persistence.toDomain
+import com.dev.adapter.out.persistence.entity.toDomain
 import com.dev.aplication.port.`in`.FindBankAccountUseCase
 import com.dev.aplication.port.`in`.command.FindRegisteredBankAccountCommand
 import com.dev.aplication.port.out.FindRegisterBankAccountPort
