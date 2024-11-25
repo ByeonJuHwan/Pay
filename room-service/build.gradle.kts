@@ -19,12 +19,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    //implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    testImplementation(kotlin("test"))
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     // 테스트 의존성
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    //testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("io.mockk:mockk:1.13.8")
     testImplementation(kotlin("test"))
+
+    // mariadb
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
     // common
     implementation(project(":common"))
