@@ -8,7 +8,7 @@ import com.dev.domain.Hotel
 import org.springframework.stereotype.Service
 
 @Service
-class RegisterServiceHotel(
+class RegisterHotelService(
     private val registerHotelPort: RegisterHotelPort,
 ) : RegisterHotelUseCase {
 
