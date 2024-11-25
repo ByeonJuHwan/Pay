@@ -12,7 +12,6 @@ class MoneyChangingRequest private constructor(
     val targetMembershipId: String,
     // 그 요청이 증액 요청인지 / 감액 요청인지
     val changingType: MoneyChangingType,
-    val bankAccountNumber: String,
     val changingMoneyAmount: BigDecimal,
     val changingMoneyStatus: MoneyChangingStatus,
     val uuid: UUID,
@@ -27,11 +26,7 @@ class MoneyChangingRequest private constructor(
     )
 
     data class ChangingType(
-        val changingType: String
-    )
-
-    data class BankAccountNumber(
-        val bankAccountNumber: String
+        val changingType: MoneyChangingType,
     )
 
     data class ChangingMoneyAmount(
@@ -39,7 +34,7 @@ class MoneyChangingRequest private constructor(
     )
 
     data class ChangingMoneyStatus(
-        val changingMoneyStatus: String
+        val changingMoneyStatus: MoneyChangingStatus,
     )
 
     data class Uuid(
@@ -51,7 +46,6 @@ class MoneyChangingRequest private constructor(
             moneyChangingRequestId: MoneyChangingRequestId,
             targetMembershipId: TargetMembershipId,
             changingType: MoneyChangingType,
-            bankAccountNumber: BankAccountNumber,
             changingMoneyAmount: ChangingMoneyAmount,
             changingMoneyStatus: MoneyChangingStatus,
             uuid: Uuid,
@@ -60,7 +54,6 @@ class MoneyChangingRequest private constructor(
                 moneyChangingRequestId = moneyChangingRequestId.moneyChangingRequestId,
                 targetMembershipId = targetMembershipId.targetMembershipId,
                 changingType = changingType,
-                bankAccountNumber = bankAccountNumber.bankAccountNumber,
                 changingMoneyAmount = changingMoneyAmount.changingMoneyAmount,
                 changingMoneyStatus = changingMoneyStatus,
                 uuid = uuid.uuid,
