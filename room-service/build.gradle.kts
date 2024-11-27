@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.jpa") version "1.9.23"
     kotlin("plugin.spring") version "1.9.21"
+    kotlin("kapt")
     id("org.springframework.boot") version "3.2.3"
     id("io.spring.dependency-management") version "1.1.4"
 //    id("com.palantir.docker") version "0.35.0"
@@ -29,6 +30,11 @@ dependencies {
 
     // mariadb
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+
+    // Querydsl 의존성 추가
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")  // jakarta 사용
+    implementation("com.querydsl:querydsl-core")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 
     // common
     implementation(project(":common"))
