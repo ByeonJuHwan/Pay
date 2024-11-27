@@ -5,6 +5,7 @@ class Hotel private constructor(
     val hotelName: String,
     val hotelDescription: String,
     val location: String,
+    val rooms: Set<Room>
 ) {
     data class HotelId(
         val hotelId: String
@@ -18,6 +19,9 @@ class Hotel private constructor(
     data class Location(
         val location: String
     )
+    data class Rooms(
+        val rooms: Set<Room>
+    )
 
     companion object {
         fun generateHotel(
@@ -25,12 +29,14 @@ class Hotel private constructor(
             hotelName: HotelName,
             hotelDescription: HotelDescription,
             location: Location,
+            rooms: Rooms,
         ): Hotel {
             return Hotel(
                 hotelId.hotelId,
                 hotelName.hotelName,
                 hotelDescription.hotelDescription,
                 location.location,
+                rooms.rooms,
             )
         }
     }
