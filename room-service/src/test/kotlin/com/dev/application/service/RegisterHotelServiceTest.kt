@@ -31,6 +31,7 @@ class RegisterHotelServiceTest {
       command.hotelName,
       command.hotelDescription,
       command.location,
+      mutableSetOf(),
       1L
     )
 
