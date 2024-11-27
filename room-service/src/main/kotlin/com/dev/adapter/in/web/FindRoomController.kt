@@ -5,6 +5,7 @@ import com.dev.application.port.`in`.FindAvailableRoomUseCase
 import com.dev.application.port.`in`.query.FindAvailableRoomQuery
 import com.dev.common.WebAdapter
 import org.springframework.data.domain.Pageable
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -22,13 +23,9 @@ class FindRoomController (
         @RequestParam(required = false) lastId: Long?,
         @RequestParam(defaultValue = "10") size: Long,
         pageable: Pageable,
-    ) : FindAvailableHotelResponse {
+    ) : ResponseEntity<FindAvailableHotelResponse> {
         val query = FindAvailableRoomQuery(location, startDate, endDate)
         val availableRooms = findAvailableRoomUseCase.findAvailableRoom(query, lastId, size)
-        return FindAvailableHotelResponse(
-            availableRooms.content,
-            availableRooms.hasNext,
-            availableRooms.lastId,
-        )
+        return ResponseEntity.ok(FindAvailableHotelResponse.from(availableRooms))
     }
 }
