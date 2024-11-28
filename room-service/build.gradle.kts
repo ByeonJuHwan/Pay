@@ -24,9 +24,11 @@ dependencies {
 
     // 테스트 의존성
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    //testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("io.mockk:mockk:1.13.8")
     testImplementation(kotlin("test"))
+    testImplementation("org.testcontainers:testcontainers:1.19.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.3")
+    testImplementation("org.testcontainers:mariadb:1.19.3")
 
     // mariadb
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
