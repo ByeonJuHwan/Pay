@@ -4,6 +4,7 @@ import com.dev.application.port.`in`.query.FindAvailableRoomQuery
 import com.dev.application.port.out.FindAvailableRoomPort
 import com.dev.domain.Hotel
 import com.dev.domain.Room
+import com.dev.domain.RoomCount
 import com.dev.domain.RoomOption
 import io.mockk.every
 import io.mockk.mockk
@@ -63,7 +64,6 @@ class FindAvailableRoomServiceTest {
     )
 
     private fun createTestRoom(hotelId: String) = Room.generateRoom(
-        Room.HotelId(hotelId),
         Room.RoomId("R1"),
         Room.RoomName("좋은방"),
         Room.RoomDescription("좋은방 어서와요"),
@@ -71,10 +71,15 @@ class FindAvailableRoomServiceTest {
     )
 
     private fun createTestRoomOption(roomId: String) = RoomOption.generateRoomOption(
-        RoomOption.RoomId(roomId),
         RoomOption.RoomOptionId("O1"),
         RoomOption.StartDate("20241117"),
         RoomOption.EndDate("20241118"),
-        RoomOption.Amount("100")
+        RoomOption.Amount("100"),
+        RoomOption.AvailableRoomCount(crateTestRoomCount())
+    )
+
+    private fun crateTestRoomCount() = RoomCount.generateRoomCount(
+        RoomCount.RoomCountId("RC1"),
+        RoomCount.AvailableRooms(10)
     )
 }

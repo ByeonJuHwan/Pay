@@ -6,4 +6,5 @@ import com.dev.domain.Hotel
 
 interface SpringDataHotelQueryRepository {
     fun addAvailableRooms(location: String?, startDate: String?, endDate: String?, lastId: Long?, size: Long): List<Hotel>
+    fun findAvailableHotelDetail(hotelId: Long, startDate: String, endDate: String): HotelEntity?
 }
