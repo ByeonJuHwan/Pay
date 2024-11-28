@@ -1,17 +1,12 @@
 package com.dev.domain
 
-import java.time.LocalDate
-
 class RoomOption private constructor(
-    val roomId: String,
     val roomOptionId: String,
     val startDate: String,
     val endDate: String,
     val amount: String,
+    val roomCount: RoomCount,
 ) {
-    data class RoomId(
-        val roomId: String,
-    )
     data class RoomOptionId(
         val roomOptionId: String,
     )
@@ -24,21 +19,24 @@ class RoomOption private constructor(
     data class Amount(
         val amount: String,
     )
+    data class AvailableRoomCount(
+        val roomCount: RoomCount,
+    )
 
     companion object {
         fun generateRoomOption(
-            roomId: RoomId,
             roomOptionId: RoomOptionId,
             startDate: StartDate,
             endDate: EndDate,
             amount: Amount,
+            roomCount: AvailableRoomCount,
         ): RoomOption {
             return RoomOption(
-                roomId.roomId,
                 roomOptionId.roomOptionId,
                 startDate.startDate,
                 endDate.endDate,
                 amount.amount,
+                roomCount.roomCount,
             )
         }
     }

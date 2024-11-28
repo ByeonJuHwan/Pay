@@ -40,7 +40,6 @@ class RoomEntity (
 
 fun RoomEntity.toDomain(): Room {
     return Room.generateRoom(
-        Room.HotelId(this.hotel?.hotelId.toString()),
         Room.RoomId(this.roomId.toString()),
         Room.RoomName(this.roomName),
         Room.RoomDescription(this.roomDescription),

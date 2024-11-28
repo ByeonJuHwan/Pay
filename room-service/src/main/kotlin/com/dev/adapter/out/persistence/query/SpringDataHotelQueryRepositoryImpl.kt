@@ -1,6 +1,8 @@
 package com.dev.adapter.out.persistence.query
 
+import com.dev.adapter.out.persistence.entity.HotelEntity
 import com.dev.adapter.out.persistence.entity.QHotelEntity.hotelEntity
+import com.dev.adapter.out.persistence.entity.QRoomCountEntity.roomCountEntity
 import com.dev.adapter.out.persistence.entity.QRoomEntity.roomEntity
 import com.dev.adapter.out.persistence.entity.QRoomOptionEntity.roomOptionEntity
 import com.dev.adapter.out.persistence.entity.toDomain
@@ -15,9 +17,12 @@ class SpringDataHotelQueryRepositoryImpl(
     private val queryFactory: JPAQueryFactory,
 ) : SpringDataHotelQueryRepository {
 
+    /**
+     * 호텔 목록 검색
+     */
     override fun addAvailableRooms(location: String?, startDate: String?, endDate: String?, lastId: Long?, size: Long) : List<Hotel> {
-        return queryFactory.select(hotelEntity)
-            .from(hotelEntity)
+        return queryFactory
+            .selectFrom(hotelEntity)
             .join(hotelEntity._rooms, roomEntity).fetchJoin()
             .join(roomEntity._roomOptions, roomOptionEntity).fetchJoin()
             .where(
@@ -28,6 +33,22 @@ class SpringDataHotelQueryRepositoryImpl(
             .limit(size + 1)
             .fetch()
             .map { it.toDomain() }
+    }
+
+    /**
+     * 호텔 상세 검색
+     */
+    override fun findAvailableHotelDetail(hotelId: Long, startDate: String, endDate: String): HotelEntity? {
+        return queryFactory
+            .selectFrom(hotelEntity)
+            .join(hotelEntity._rooms, roomEntity).fetchJoin()
+            .join(roomEntity._roomOptions, roomOptionEntity).fetchJoin()
+            .join(roomOptionEntity.roomCount, roomCountEntity).fetchJoin()
+            .where(
+                hotelEntity.hotelId.eq(hotelId),
+                checkPeriod(startDate,endDate)
+            )
+            .fetchOne()
     }
 
     private fun searchLocation(location: String?): BooleanExpression? {
