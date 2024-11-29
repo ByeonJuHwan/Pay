@@ -19,7 +19,6 @@ class RegisterMembershipController (
     fun registerMembership(
         @RequestBody request: RegisterMembershipRequest,
     ) : Membership {
-
         val command = RegisterMembershipCommand(
             name = request.name,
             email = request.email,

@@ -4,6 +4,7 @@ import com.dev.adapter.out.external.bank.GetBankAccountRequest
 import com.dev.adapter.out.persistence.entity.toDomain
 import com.dev.application.port.`in`.command.RegisterBankAccountCommand
 import com.dev.application.port.`in`.RegisterBankAccountUseCase
+import com.dev.application.port.out.GetMembershipPort
 import com.dev.application.port.out.RegisterBankAccountPort
 import com.dev.application.port.out.RequestBankAccountInfoPort
 import com.dev.domain.RegisteredBankAccount
@@ -15,12 +16,19 @@ import org.springframework.stereotype.Service
 class RegisterBankAccountService (
     private val registerBankAccountPort: RegisterBankAccountPort,
     private val requestBankAccountInfoPort: RequestBankAccountInfoPort,
+    private val getMembershipPort: GetMembershipPort,
 ) : RegisterBankAccountUseCase {
 
     override fun registerBankAccount(command: RegisterBankAccountCommand): RegisteredBankAccount {
         // 은행 계좌를 등록해야 하는 서비스 (비즈니스 로직)
 
         // (멤버 서비스도 확인?) 여기서는 일단 skip
+        // call membership svc, 정상인지 확인
+        val membershipStatus = getMembershipPort.getMembership(command.membershipId)
+
+        if (!membershipStatus.isValid) {
+            throw RuntimeException("멤버쉽 정보가 유효하지 않습니다.")
+        }
 
         // 1. 외부 실제 은행에 등록된 계좌인지(정상인지) 확인한다.
         // 외부의 은행에 이 계좌 정상인지? 확인

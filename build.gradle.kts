@@ -4,27 +4,40 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     kotlin("jvm") version "1.9.23"
-    kotlin("plugin.spring") version "1.9.21"  // Spring 지원을 위한 Kotlin 플러그인
-    id("org.springframework.boot") version "3.2.3"  // Spring Boot 플러그인
-    id("io.spring.dependency-management") version "1.1.4"  // 스프링 의존성 관리
+    kotlin("plugin.spring") version "1.9.21"
+    id("org.springframework.boot") version "3.2.3"
+    id("io.spring.dependency-management") version "1.1.4"
 }
 
-group = "com.dev"
-version = "1.0-SNAPSHOT"
+allprojects {
+    group = "com.dev"
+    version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    // Spring Boot 기본 의존성
-    implementation("org.springframework.boot:spring-boot-starter-web")  // Web 서버 기능
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")  // Kotlin JSON 지원
-    implementation("org.jetbrains.kotlin:kotlin-reflect")  // Kotlin 리플렉션
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
 
-    // 테스트 의존성
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation(kotlin("test"))
+    dependencies {
+        // Spring Boot 기본 의존성
+        "implementation"("org.springframework.boot:spring-boot-starter-web")
+        "implementation"("com.fasterxml.jackson.module:jackson-module-kotlin")
+        "implementation"("org.jetbrains.kotlin:kotlin-reflect")
+        "implementation"("org.springframework.boot:spring-boot-starter-aop")
+
+        // 테스트 의존성
+        "testImplementation"("org.springframework.boot:spring-boot-starter-test")
+        "testImplementation"(kotlin("test"))
+
+        // 카프카
+        "implementation"("org.springframework.kafka:spring-kafka")
+    }
 }
 
 tasks.test {
