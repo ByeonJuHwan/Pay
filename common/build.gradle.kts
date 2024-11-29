@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring") version "1.9.21"
@@ -13,7 +15,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
 
     implementation("org.springframework.boot:spring-boot-starter-validation")
 }
@@ -23,4 +24,8 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(17)
+}
+
+tasks.getByName<BootJar>("bootJar") {
+    enabled = false
 }

@@ -75,6 +75,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=${MARIADB_PASSWORD}
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+      - LOGGING_TOPIC=byoennolja.logging.out.stdout
 
   bank-service:
       image: pay-banking-service:1.0.1
@@ -90,6 +92,10 @@ services:
         - SPRING_DATASOURCE_PASSWORD=${MARIADB_PASSWORD}
         - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
         - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+        - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+        - LOGGING_TOPIC=byoennolja.logging.out.stdout
+        - SERVICE_MEMBERSHIP_URL=http://membership-service:8080
+
   money-service:
     image: pay-money-service:1.0.1
     networks:
@@ -104,6 +110,20 @@ services:
       - SPRING_DATASOURCE_PASSWORD=${MARIADB_PASSWORD}
       - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MariaDBDialect
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+      - LOGGING_TOPIC=byoennolja.logging.out.stdout
+
+  logging-consumer:
+      image: pay-logging-consumer:1.0.1
+      networks:
+        - pay_network
+      restart: always
+      depends_on:
+        - kafka
+        - zookeeper
+      environment:
+        - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+        - LOGGING_TOPIC=byoennolja.logging.out.stdout
 
 networks:
   pay_network:
