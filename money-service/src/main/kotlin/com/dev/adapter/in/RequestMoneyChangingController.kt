@@ -21,7 +21,7 @@ class RequestMoneyChangingController (
             request.targetMembershipId,
             request.amount,
         )
-        val moneyChangingRequest = increaseMoneyRequestUseCase.increaseMoney(command)
+        val moneyChangingRequest = increaseMoneyRequestUseCase.increaseMoneyAsync(command)?: throw RuntimeException("IncreaseMoneyRequestUseCase is null")
         return MoneyChangingResultDetail.from(moneyChangingRequest)
     }
 }
